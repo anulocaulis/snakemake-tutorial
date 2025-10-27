@@ -1,0 +1,55 @@
+Assuming unrestricted shared filesystem usage.
+host: DESKTOP-8FPLUCH
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 16
+Rules claiming more threads will be scaled down.
+Job stats:
+job               count
+--------------  -------
+bcftools_call         1
+bwa_map               1
+plot_quals            1
+samtools_index        1
+samtools_sort         1
+total                 5
+
+Select jobs to execute...
+Execute 1 jobs...
+[Fri Oct 24 12:52:17 2025]
+localrule bwa_map:
+    input: data/genome.fa, data/samples/C.fastq
+    output: mapped_reads/C.bam
+    jobid: 7
+    reason: Missing output files: mapped_reads/C.bam
+    wildcards: sample=C
+    threads: 8
+    resources: tmpdir=/tmp
+RuleException:
+CalledProcessError in file "/mnt/c/Users/Mike/Downloads/thesis_workspace/snakemake-tutorial/Snakefile", line 31:
+Command 'set -euo pipefail;  bwa mem -R @RG\tID:C\tSM:C -t 8 data/genome.fa data/samples/C.fastq | samtools view -Sb - > mapped_reads/C.bam' returned non-zero exit status 1.
+[Fri Oct 24 12:52:18 2025]
+Error in rule bwa_map:
+    message: None
+    jobid: 7
+    input: data/genome.fa, data/samples/C.fastq
+    output: mapped_reads/C.bam
+    shell:
+        bwa mem -R @RG\tID:C\tSM:C -t 8 data/genome.fa data/samples/C.fastq | samtools view -Sb - > mapped_reads/C.bam
+        (command exited with non-zero exit code)
+Removing output files of failed job bwa_map since they might be corrupted:
+mapped_reads/C.bam
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look below for error messages
+[Fri Oct 24 12:52:18 2025]
+Error in rule bwa_map:
+    message: None
+    jobid: 7
+    input: data/genome.fa, data/samples/C.fastq
+    output: mapped_reads/C.bam
+    shell:
+        bwa mem -R @RG\tID:C\tSM:C -t 8 data/genome.fa data/samples/C.fastq | samtools view -Sb - > mapped_reads/C.bam
+        (command exited with non-zero exit code)
+Complete log(s): /mnt/c/Users/Mike/Downloads/thesis_workspace/snakemake-tutorial/.snakemake/log/2025-10-24T125216.763926.snakemake.log
+WorkflowError:
+At least one job did not complete successfully.

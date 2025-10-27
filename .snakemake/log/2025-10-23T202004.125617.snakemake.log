@@ -1,0 +1,78 @@
+Assuming unrestricted shared filesystem usage.
+host: DESKTOP-8FPLUCH
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job               count
+--------------  -------
+bcftools_call         1
+plot_quals            1
+samtools_index        2
+samtools_sort         2
+total                 6
+
+Select jobs to execute...
+Failed to solve scheduling problem with ILP solver, falling back to greedy scheduler. You likely have to fix your ILP solver installation. Error message: PULP_CBC_CMD: Not Available (check permissions on cbc)
+Execute 1 jobs...
+[Thu Oct 23 20:20:04 2025]
+localrule samtools_sort:
+    input: mapped_reads/A.bam
+    output: sorted_reads/A.bam
+    jobid: 2
+    reason: Missing output files: sorted_reads/A.bam
+    wildcards: sample=A
+    resources: tmpdir=/tmp
+[Thu Oct 23 20:20:05 2025]
+Finished jobid: 2 (Rule: samtools_sort)
+1 of 6 steps (17%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Thu Oct 23 20:20:05 2025]
+localrule samtools_index:
+    input: sorted_reads/A.bam
+    output: sorted_reads/A.bam.bai
+    jobid: 6
+    reason: Missing output files: sorted_reads/A.bam.bai; Input files updated by another job: sorted_reads/A.bam
+    wildcards: sample=A
+    resources: tmpdir=/tmp
+[Thu Oct 23 20:20:05 2025]
+Finished jobid: 6 (Rule: samtools_index)
+2 of 6 steps (33%) done
+Select jobs to execute...
+Execute 1 jobs...
+[Thu Oct 23 20:20:05 2025]
+localrule samtools_sort:
+    input: mapped_reads/B.bam
+    output: sorted_reads/B.bam
+    jobid: 4
+    reason: Missing output files: sorted_reads/B.bam; Code has changed since last execution
+    wildcards: sample=B
+    resources: tmpdir=/tmp
+RuleException:
+CalledProcessError in file "/mnt/c/Users/Mike/Downloads/thesis_workspace/snakemake-tutorial/Snakefile", line 27:
+Command 'set -euo pipefail;  samtools sort -T sorted_reads/B -o sorted_reads/B.bam mapped_reads/B.bam' returned non-zero exit status 1.
+[Thu Oct 23 20:20:05 2025]
+Error in rule samtools_sort:
+    message: None
+    jobid: 4
+    input: mapped_reads/B.bam
+    output: sorted_reads/B.bam
+    shell:
+        samtools sort -T sorted_reads/B -o sorted_reads/B.bam mapped_reads/B.bam
+        (command exited with non-zero exit code)
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look below for error messages
+[Thu Oct 23 20:20:05 2025]
+Error in rule samtools_sort:
+    message: None
+    jobid: 4
+    input: mapped_reads/B.bam
+    output: sorted_reads/B.bam
+    shell:
+        samtools sort -T sorted_reads/B -o sorted_reads/B.bam mapped_reads/B.bam
+        (command exited with non-zero exit code)
+Complete log(s): /mnt/c/Users/Mike/Downloads/thesis_workspace/snakemake-tutorial/.snakemake/log/2025-10-23T202004.125617.snakemake.log
+WorkflowError:
+At least one job did not complete successfully.

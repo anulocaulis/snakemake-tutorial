@@ -1,0 +1,17 @@
+Assuming unrestricted shared filesystem usage.
+host: DESKTOP-8FPLUCH
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job        count
+-------  -------
+bwa_map        1
+total          1
+
+Select jobs to execute...
+Execute 1 jobs...
+RuleException in rule bwa_map in file "/mnt/c/Users/Mike/Downloads/thesis_workspace/snakemake-tutorial/Snakefile", line 1:
+ValueError: Single '}' encountered in format string, when formatting the following:
+bwa mem {{input} | samtools view -Sb - > {output}

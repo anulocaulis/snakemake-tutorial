@@ -1,0 +1,4 @@
+Building DAG of jobs...
+WildcardError in rule bcftools_call in file "/mnt/c/Users/Mike/Downloads/thesis_workspace/snakemake-tutorial/Snakefile", line 31:
+Wildcards in input files cannot be determined from output files: (rule bcftools_call, line 70, /mnt/c/Users/Mike/Downloads/thesis_workspace/snakemake-tutorial/Snakefile)
+'sample'

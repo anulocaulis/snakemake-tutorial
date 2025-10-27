@@ -1,0 +1,88 @@
+Assuming unrestricted shared filesystem usage.
+host: DESKTOP-8FPLUCH
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 16
+Rules claiming more threads will be scaled down.
+Job stats:
+job               count
+--------------  -------
+bcftools_call         1
+bwa_map               3
+plot_quals            1
+samtools_index        3
+samtools_sort         3
+total                11
+
+Select jobs to execute...
+Failed to solve scheduling problem with ILP solver, falling back to greedy scheduler. You likely have to fix your ILP solver installation. Error message: PULP_CBC_CMD: Not Available (check permissions on cbc)
+Execute 2 jobs...
+[Fri Oct 24 12:40:15 2025]
+localrule bwa_map:
+    input: data/genome.fa, data/samples/B.fastq
+    output: mapped_reads/B.bam
+    jobid: 5
+    reason: Code has changed since last execution; Params have changed since last execution: Union of exclusive params before and now across all output: before: <nothing exclusive> now: '@RG\\tID:B\\tSM:B' 
+    wildcards: sample=B
+    threads: 8
+    resources: tmpdir=/tmp
+[Fri Oct 24 12:40:17 2025]
+localrule bwa_map:
+    input: data/genome.fa, data/samples/C.fastq
+    output: mapped_reads/C.bam
+    jobid: 7
+    reason: Missing output files: mapped_reads/C.bam
+    wildcards: sample=C
+    threads: 8
+    resources: tmpdir=/tmp
+RuleException:
+CalledProcessError in file "/mnt/c/Users/Mike/Downloads/thesis_workspace/snakemake-tutorial/Snakefile", line 29:
+Command 'set -euo pipefail;  bwa mem -R @RG\tID:B\tSM:B -t 8 data/genome.fa data/samples/B.fastq | samtools view -Sb - > mapped_reads/B.bam' returned non-zero exit status 1.
+[Fri Oct 24 12:40:17 2025]
+Error in rule bwa_map:
+    message: None
+    jobid: 5
+    input: data/genome.fa, data/samples/B.fastq
+    output: mapped_reads/B.bam
+    shell:
+        bwa mem -R @RG\tID:B\tSM:B -t 8 data/genome.fa data/samples/B.fastq | samtools view -Sb - > mapped_reads/B.bam
+        (command exited with non-zero exit code)
+RuleException:
+CalledProcessError in file "/mnt/c/Users/Mike/Downloads/thesis_workspace/snakemake-tutorial/Snakefile", line 29:
+Command 'set -euo pipefail;  bwa mem -R @RG\tID:C\tSM:C -t 8 data/genome.fa data/samples/C.fastq | samtools view -Sb - > mapped_reads/C.bam' returned non-zero exit status 1.
+[Fri Oct 24 12:40:17 2025]
+Error in rule bwa_map:
+    message: None
+    jobid: 7
+    input: data/genome.fa, data/samples/C.fastq
+    output: mapped_reads/C.bam
+    shell:
+        bwa mem -R @RG\tID:C\tSM:C -t 8 data/genome.fa data/samples/C.fastq | samtools view -Sb - > mapped_reads/C.bam
+        (command exited with non-zero exit code)
+Removing output files of failed job bwa_map since they might be corrupted:
+mapped_reads/B.bam
+Removing output files of failed job bwa_map since they might be corrupted:
+mapped_reads/C.bam
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look below for error messages
+[Fri Oct 24 12:40:17 2025]
+Error in rule bwa_map:
+    message: None
+    jobid: 5
+    input: data/genome.fa, data/samples/B.fastq
+    output: mapped_reads/B.bam
+    shell:
+        bwa mem -R @RG\tID:B\tSM:B -t 8 data/genome.fa data/samples/B.fastq | samtools view -Sb - > mapped_reads/B.bam
+        (command exited with non-zero exit code)
+[Fri Oct 24 12:40:17 2025]
+Error in rule bwa_map:
+    message: None
+    jobid: 7
+    input: data/genome.fa, data/samples/C.fastq
+    output: mapped_reads/C.bam
+    shell:
+        bwa mem -R @RG\tID:C\tSM:C -t 8 data/genome.fa data/samples/C.fastq | samtools view -Sb - > mapped_reads/C.bam
+        (command exited with non-zero exit code)
+Complete log(s): /mnt/c/Users/Mike/Downloads/thesis_workspace/snakemake-tutorial/.snakemake/log/2025-10-24T124014.729496.snakemake.log
+WorkflowError:
+At least one job did not complete successfully.

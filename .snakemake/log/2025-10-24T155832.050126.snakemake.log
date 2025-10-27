@@ -1,0 +1,3 @@
+NameError in file "/mnt/c/Users/Mike/Downloads/thesis_workspace/snakemake-tutorial/Snakefile", line 5:
+name 'mapping' is not defined
+  File "/mnt/c/Users/Mike/Downloads/thesis_workspace/snakemake-tutorial/Snakefile", line 5, in <module>

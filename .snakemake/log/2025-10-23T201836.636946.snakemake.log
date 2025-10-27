@@ -1,0 +1,72 @@
+Assuming unrestricted shared filesystem usage.
+host: DESKTOP-8FPLUCH
+Building DAG of jobs...
+Using shell: /usr/bin/bash
+Provided cores: 1 (use --cores to define parallelism)
+Rules claiming more threads will be scaled down.
+Job stats:
+job               count
+--------------  -------
+bcftools_call         1
+bwa_map               2
+plot_quals            1
+samtools_index        2
+samtools_sort         2
+total                 8
+
+Select jobs to execute...
+Failed to solve scheduling problem with ILP solver, falling back to greedy scheduler. You likely have to fix your ILP solver installation. Error message: PULP_CBC_CMD: Not Available (check permissions on cbc)
+Execute 1 jobs...
+[Thu Oct 23 20:18:36 2025]
+localrule bwa_map:
+    input: data/genome.fa, data/samples/B.fastq
+    output: mapped_reads/B.bam
+    jobid: 5
+    reason: Missing output files: mapped_reads/B.bam
+    wildcards: sample=B
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Thu Oct 23 20:18:38 2025]
+Finished jobid: 5 (Rule: bwa_map)
+1 of 8 steps (12%) done
+Execute 1 jobs...
+[Thu Oct 23 20:18:38 2025]
+localrule bwa_map:
+    input: data/genome.fa, data/samples/A.fastq
+    output: mapped_reads/A.bam
+    jobid: 3
+    reason: Updated input files: data/samples/A.fastq
+    wildcards: sample=A
+    resources: tmpdir=/tmp
+Select jobs to execute...
+[Thu Oct 23 20:18:39 2025]
+Finished jobid: 3 (Rule: bwa_map)
+2 of 8 steps (25%) done
+Execute 1 jobs...
+[Thu Oct 23 20:18:39 2025]
+localrule samtools_sort:
+    input: mapped_reads/B.bam
+    output: sorted_reads/B.bam
+    jobid: 4
+    reason: Missing output files: sorted_reads/B.bam; Input files updated by another job: mapped_reads/B.bam
+    wildcards: sample=B
+    resources: tmpdir=/tmp
+Waiting at most 5 seconds for missing files:
+sorted_reads/B.bam (missing locally)
+MissingOutputException in rule samtools_sort in file "/mnt/c/Users/Mike/Downloads/thesis_workspace/snakemake-tutorial/Snakefile", line 20:
+Job 4  completed successfully, but some output files are missing. Missing files after 5 seconds. This might be due to filesystem latency. If that is the case, consider to increase the wait time with --latency-wait:
+sorted_reads/B.bam (missing locally, parent dir contents: )
+Shutting down, this might take some time.
+Exiting because a job execution failed. Look below for error messages
+[Thu Oct 23 20:18:44 2025]
+Error in rule samtools_sort:
+    message: None
+    jobid: 4
+    input: mapped_reads/B.bam
+    output: sorted_reads/B.bam
+    shell:
+        samtools sort -T sorted_reads/B -o sorted_reads/B.bam > mapped_reads/B.bam
+        (command exited with non-zero exit code)
+Complete log(s): /mnt/c/Users/Mike/Downloads/thesis_workspace/snakemake-tutorial/.snakemake/log/2025-10-23T201836.636946.snakemake.log
+WorkflowError:
+At least one job did not complete successfully.

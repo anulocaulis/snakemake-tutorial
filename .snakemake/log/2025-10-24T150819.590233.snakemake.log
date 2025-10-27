@@ -1,0 +1,9 @@
+Assuming unrestricted shared filesystem usage.
+host: DESKTOP-8FPLUCH
+Building DAG of jobs...
+ProtectedOutputException in rule samtools_sort in file "/mnt/c/Users/Mike/Downloads/thesis_workspace/snakemake-tutorial/Snakefile", line 38:
+Write-protected output files for rule samtools_sort:
+    output: sorted_reads/A.bam
+    wildcards: sample=A
+    affected files:
+        sorted_reads/A.bam
